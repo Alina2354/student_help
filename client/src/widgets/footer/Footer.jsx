@@ -24,18 +24,6 @@ export default function Footer() {
         {" "}
         Главная
       </button>
-      <button
-        style={{ textDecoration: "none", marginRight: "25px" }}
-        onClick={() => navigate("/cookies")}
-      >
-        Куки
-      </button>
-      <button
-        style={{ textDecoration: "none", marginRight: "25px" }}
-        onClick={() => navigate("/tasks")}
-      >
-        Задачи
-      </button>
     </footer>
   );
 }

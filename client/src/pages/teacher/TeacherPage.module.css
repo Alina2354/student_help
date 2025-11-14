@@ -1,0 +1,183 @@
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.teacherInfo {
+  background-color: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.teacherName {
+  margin-bottom: 15px;
+  color: #212529;
+}
+
+.infoItem {
+  margin: 5px 0;
+  color: #6c757d;
+}
+
+.section {
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.section h2 {
+  margin-bottom: 20px;
+  color: #212529;
+}
+
+.filter {
+  margin-bottom: 20px;
+}
+
+.select {
+  margin-left: 10px;
+  padding: 5px 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.disciplinesList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.disciplineItem {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.disciplineItem h4 {
+  margin-bottom: 5px;
+  color: #212529;
+}
+
+.ratings {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.ratingItem {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.ratingValue {
+  font-weight: bold;
+  font-size: 18px;
+  min-width: 50px;
+}
+
+.ratingButton {
+  padding: 5px 15px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.ratingButton:hover {
+  background-color: #0b5ed7;
+}
+
+.faqsList {
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faqItem {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.faqText {
+  margin-bottom: 10px;
+  color: #212529;
+}
+
+.faqMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.deleteButton {
+  padding: 5px 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
+
+.faqForm {
+  margin-top: 20px;
+}
+
+.faqTextarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: inherit;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #0b5ed7;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+}
+
+.empty {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+}
+
+

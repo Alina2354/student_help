@@ -1,0 +1,212 @@
+.container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.title {
+  margin-bottom: 30px;
+  text-align: center;
+  color: #212529;
+}
+
+.section {
+  background-color: white;
+  padding: 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 30px;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.section h2 {
+  margin: 0;
+  color: #212529;
+}
+
+.addButton {
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.addButton:hover {
+  background-color: #218838;
+}
+
+.form {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+}
+
+.form h3 {
+  margin-bottom: 15px;
+  color: #212529;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.formButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.submitButton {
+  padding: 10px 20px;
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.submitButton:hover {
+  background-color: #0b5ed7;
+}
+
+.cancelButton {
+  padding: 10px 20px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancelButton:hover {
+  background-color: #5a6268;
+}
+
+.teachersList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.teacherCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.teacherInfo h4 {
+  margin-bottom: 5px;
+  color: #212529;
+}
+
+.teacherInfo p {
+  margin: 3px 0;
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.teacherActions {
+  display: flex;
+  gap: 10px;
+}
+
+.editButton {
+  padding: 8px 15px;
+  background-color: #ffc107;
+  color: #212529;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.editButton:hover {
+  background-color: #e0a800;
+}
+
+.deleteButton {
+  padding: 8px 15px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.deleteButton:hover {
+  background-color: #c82333;
+}
+
+.disciplinesList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.disciplineItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.disciplineItem h4 {
+  margin-bottom: 5px;
+  color: #212529;
+}
+
+.faqsList {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.faqItem {
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+.faqText {
+  margin-bottom: 10px;
+  color: #212529;
+}
+
+.faqMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.loading,
+.error {
+  text-align: center;
+  padding: 40px;
+  color: #6c757d;
+}
+
+
+
+
+

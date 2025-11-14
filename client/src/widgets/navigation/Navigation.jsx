@@ -1,18 +1,18 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import UserApi from "../../entites/user/api/UserApi";
 import { setAccessToken } from "../../shared/lib/axiosInstace";
+import styles from "./Navigation.module.css";
 
 export default function Navigation({ setUser, user }) {
   const navigate = useNavigate();
   const onClick = async () => {
     try {
       await UserApi.logout();
-      setAccessToken(""); // Очищаем accessToken
+      setAccessToken("");
       setUser({ status: "logging", data: null });
       navigate("/signIn");
     } catch (error) {
       console.error("Ошибка при выходе:", error);
-      // Всё равно очищаем токен и перенаправляем
       setAccessToken("");
       setUser({ status: "logging", data: null });
       navigate("/signIn");
@@ -20,52 +20,31 @@ export default function Navigation({ setUser, user }) {
   };
 
   return (
-    <header>
-      <NavLink to="/" style={{ textDecoration: "none", marginRight: "15px" }}>
+    <header className={styles.header}>
+      <NavLink to="/" className={styles.link}>
         Главная
       </NavLink>
-      <NavLink
-        to="/cookies"
-        style={{ textDecoration: "none", marginRight: "15px" }}
-      >
-        Куки
+      <NavLink to="/teachers" className={styles.link}>
+        Преподаватели
       </NavLink>
-      <NavLink
-        to="/tasks"
-        style={{ textDecoration: "none", marginRight: "15px" }}
-      >
-        Задачи
-      </NavLink>
-      <NavLink to="/ai" style={{ textDecoration: "none", marginRight: "15px" }}>
-        GigaChat
-      </NavLink>
+
       {user.status === "logged" ? (
         <>
-          <NavLink
-            to={"/personalAccount"}
-            style={{ textDecoration: "none", marginRight: "15px" }}
-          >
-            {user?.data?.name}
-          </NavLink>
-          <NavLink
-            onClick={onClick}
-            style={{ textDecoration: "none", marginRight: "15px" }}
-          >
+          {user?.data?.is_admin && (
+            <NavLink to="/admin" className={styles.link}>
+              Админ-панель
+            </NavLink>
+          )}
+          <NavLink onClick={onClick} className={styles.link}>
             Выйти
           </NavLink>
         </>
       ) : (
         <>
-          <NavLink
-            to="/signUp"
-            style={{ textDecoration: "none", marginRight: "15px" }}
-          >
+          <NavLink to="/signUp" className={styles.link}>
             Регистрация
           </NavLink>
-          <NavLink
-            to={"/signIn"}
-            style={{ textDecoration: "none", marginRight: "15px" }}
-          >
+          <NavLink to="/signIn" className={styles.link}>
             Войти
           </NavLink>
         </>

@@ -3,7 +3,14 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
-      User.hasMany(models.Task, { foreignKey: "userId" });
+      User.hasMany(models.ChatMessage, {
+        foreignKey: "user_id",
+        as: "chatMessages",
+      });
+      User.hasMany(models.Faq, {
+        foreignKey: "user_id",
+        as: "faqs",
+      });
     }
 
     static validateEmail(email) {
@@ -113,6 +120,10 @@ module.exports = (sequelize, DataTypes) => {
       password: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      is_admin: {
+        type: DataTypes.BOOLEAN,
+        defaultValue: false,
       },
     },
     {
