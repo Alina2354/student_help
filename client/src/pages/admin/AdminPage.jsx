@@ -230,6 +230,11 @@ export default function AdminPage({ user }) {
   const getAvatarUrl = (path) => {
     if (!path) return null;
     if (path.startsWith("http")) return path;
+    // Если путь начинается с /files, используем полный URL без /api
+    if (path.startsWith("/files")) {
+      const baseUrl = axiosInstance.defaults.baseURL.replace("/api", "");
+      return `${baseUrl}${path}`;
+    }
     return axiosInstance.defaults.baseURL + path;
   };
 

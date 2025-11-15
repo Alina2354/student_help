@@ -46,7 +46,7 @@ body {
   background: white;
   padding: 20px;
   border-radius: 20px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   margin-bottom: 24px;
 }
 
@@ -83,7 +83,7 @@ body {
   padding: 10px 12px;
   font-size: 15px;
   cursor: pointer;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
   transition: 0.2s;
 }
 
@@ -105,7 +105,7 @@ body {
   padding: 22px;
   border-radius: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
 }
 
 .requireDiscipline {
@@ -142,7 +142,7 @@ body {
   background: white;
   border-radius: 20px;
   margin-bottom: 14px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
   overflow: hidden;
   position: relative;
 }
@@ -338,7 +338,179 @@ body {
   background: #7d3cf2;
 }
 
-.deleteBtnInline{
+.deleteBtnInline {
   border: none;
-  background: none
+  background: none;
+}
+
+/* ==================== АДАПТИВНОСТЬ ==================== */
+
+@media (max-width: 768px) {
+  .cont {
+    padding: 0 12px 24px;
+  }
+
+  .teacherPage {
+    margin: 16px auto;
+    max-width: 100%;
+  }
+
+  .back {
+    margin-top: 12px;
+  }
+
+  .back img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .teacherHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 16px;
+    border-radius: 16px;
+  }
+
+  .teacherAvatar {
+    width: 60px;
+    height: 60px;
+  }
+
+  .teacherInfo h1 {
+    font-size: 20px;
+  }
+
+  .teacherSubtitle {
+    font-size: 14px;
+  }
+
+  .filterContainer {
+    margin: 8px 0 20px;
+  }
+
+  .filterSelect {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .requireMainHeader {
+    font-size: 20px;
+    margin-bottom: 12px;
+  }
+
+  .requirementsSection {
+    padding: 16px;
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+
+  .requireDiscipline {
+    font-size: 16px;
+  }
+
+  .requireHeader {
+    font-size: 15px;
+    margin-top: 12px;
+  }
+
+  .requireText {
+    font-size: 14px;
+  }
+
+  .faqHeader {
+    font-size: 20px;
+    margin: 20px 0 12px;
+  }
+
+  .faqItem {
+    border-radius: 16px;
+    margin-bottom: 12px;
+  }
+
+  .faqQuestion {
+    padding: 14px 16px;
+    font-size: 15px;
+  }
+
+  .faqAnswer.active {
+    padding: 12px 16px 16px;
+  }
+
+  .faqFileSection {
+    padding: 12px;
+  }
+
+  .filePreviewImage {
+    max-height: 200px;
+  }
+
+  .reviewForm {
+    margin-top: 20px;
+    gap: 12px;
+  }
+
+  .textarea {
+    padding: 12px;
+    font-size: 14px;
+    min-height: 80px;
+  }
+
+  .btnReview {
+    padding: 12px 16px;
+    font-size: 15px;
+  }
+
+  .fileUploadSection {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .fileLabelText {
+    padding: 8px;
+    font-size: 13px;
+  }
+
+  .removeFileButton {
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .cont {
+    padding: 0 8px 20px;
+  }
+
+  .teacherHeader {
+    padding: 12px;
+  }
+
+  .teacherAvatar {
+    width: 50px;
+    height: 50px;
+  }
+
+  .teacherInfo h1 {
+    font-size: 18px;
+  }
+
+  .requirementsSection {
+    padding: 12px;
+  }
+
+  .faqQuestion {
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .faqAnswer.active {
+    padding: 10px 12px 12px;
+  }
+
+  .downloadButton {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 13px;
+  }
 }

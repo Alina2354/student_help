@@ -105,3 +105,74 @@ body {
   text-align: center;
   margin-top: 30px;
 }
+
+/* ==================== АДАПТИВНОСТЬ ==================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px 12px 40px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .teachersGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+  }
+
+  .teacherCard {
+    padding: 16px;
+    min-height: 160px;
+  }
+
+  .teacherAvatar {
+    width: 56px;
+    height: 56px;
+    margin-bottom: 10px;
+  }
+
+  .teacherName {
+    font-size: 16px;
+  }
+
+  .teacherInfo {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px 8px 32px;
+  }
+
+  .title {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  .teachersGrid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .teacherCard {
+    padding: 14px;
+    min-height: auto;
+  }
+
+  .teacherAvatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .teacherName {
+    font-size: 15px;
+  }
+
+  .teacherInfo {
+    font-size: 12px;
+  }
+}

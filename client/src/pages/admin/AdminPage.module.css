@@ -296,3 +296,153 @@ select {
     transform: scale(1);
   }
 }
+
+/* ==================== АДАПТИВНОСТЬ ==================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 16px;
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .section {
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+
+  .sectionHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 20px;
+  }
+
+  .addButton {
+    width: 100%;
+    padding: 12px;
+    font-size: 14px;
+  }
+
+  .form {
+    padding: 16px;
+  }
+
+  .input,
+  .textarea,
+  .modalTextarea,
+  select {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  .teachersList {
+    gap: 12px;
+  }
+
+  .teacherCard {
+    padding: 12px;
+  }
+
+  .teacherRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .teacherAvatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .teacherName {
+    font-size: 16px;
+  }
+
+  .editButton {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .disciplinesList {
+    gap: 12px;
+  }
+
+  .disciplineCard {
+    padding: 12px;
+  }
+
+  .faqList {
+    gap: 12px;
+  }
+
+  .faqCard {
+    padding: 14px;
+  }
+
+  .faqQuestion {
+    font-size: 14px;
+  }
+
+  .faqAnswer {
+    font-size: 14px;
+  }
+
+  .faqMeta {
+    flex-direction: column;
+    gap: 6px;
+    font-size: 12px;
+  }
+
+  .modalAnswer {
+    width: 90%;
+    max-width: 400px;
+    padding: 20px;
+    margin: 20px;
+  }
+
+  .modalTextarea {
+    height: 100px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 12px;
+  }
+
+  .title {
+    font-size: 20px;
+  }
+
+  .section {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .sectionHeader h2 {
+    font-size: 18px;
+  }
+
+  .form {
+    padding: 12px;
+  }
+
+  .teacherCard,
+  .disciplineCard,
+  .faqCard {
+    padding: 10px;
+  }
+
+  .modalAnswer {
+    width: 95%;
+    padding: 16px;
+  }
+}

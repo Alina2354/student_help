@@ -258,10 +258,15 @@ module.exports = {
         teacher_id: d.teacher_id,
         discipline_id: d.id,
         semester: d.semester,
-        requirements_5: "Уметь решать задачи повышенной сложности",
-        requirements_4: "Уметь применять методы на практике",
-        requirements_3: "Базовые знания дисциплины",
+        requirements_5: "Хотя бы приди на экзамен (по возможности)",
+
+        requirements_4: "Ну постарайся, но не так сильно",
+        requirements_3:
+        'Крикни в окно "Халява приди" 3 раза\nПостучи зачеткой об пол\nСтанцуй под песню "Все будет хорошо" и иди спать!',
+      
+
         createdAt: now,
+
         updatedAt: now,
       },
     ]);

@@ -196,13 +196,24 @@ export default function TeacherPage({ user }) {
 
               {req ? (
                 <>
-                  <h4 className={styles.requireHeader}>Требования на 3:</h4>
-                  <p className={styles.requireText}>{req.requirements_3}</p>
+                  <h4 className={styles.requireHeader}>
+                    Роскошный максимум (на 5)💅:
+                  </h4>
+                  <p
+                    className={styles.requireText}
+                    dangerouslySetInnerHTML={{
+                      __html: req.requirements_3.replace(/\n/g, "<br/>"),
+                    }}
+                  />
 
-                  <h4 className={styles.requireHeader}>Требования на 4:</h4>
+                  <h4 className={styles.requireHeader}>
+                    Что-то среднее (на 4) 👍 :
+                  </h4>
                   <p className={styles.requireText}>{req.requirements_4}</p>
 
-                  <h4 className={styles.requireHeader}>Требования на 5:</h4>
+                  <h4 className={styles.requireHeader}>
+                    Базовый минимум (на 3)💋:
+                  </h4>
                   <p className={styles.requireText}>{req.requirements_5}</p>
                 </>
               ) : (
