@@ -40,6 +40,8 @@ export default function TeacherPage({ user }) {
   const avatarUrl = teacher?.avatar
     ? teacher.avatar.startsWith("http")
       ? teacher.avatar
+      : teacher.avatar.startsWith("/files")
+      ? axiosInstance.defaults.baseURL.replace("/api", "") + teacher.avatar
       : axiosInstance.defaults.baseURL + teacher.avatar
     : "/placeholder-avatar.png";
 

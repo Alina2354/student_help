@@ -32,6 +32,11 @@ export default function TeachersPage() {
   const getAvatarUrl = (avatarPath) => {
     if (!avatarPath) return null;
     if (avatarPath.startsWith("http")) return avatarPath;
+    // Если путь начинается с /files, используем полный URL без /api
+    if (avatarPath.startsWith("/files")) {
+      const baseUrl = axiosInstance.defaults.baseURL.replace("/api", "");
+      return `${baseUrl}${avatarPath}`;
+    }
     return `${axiosInstance.defaults.baseURL}${avatarPath}`;
   };
 
