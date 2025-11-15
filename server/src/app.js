@@ -8,18 +8,21 @@ const apiRoutes = require("./routes/api.routes");
 const { sequelize } = require("./db/models");
 const app = express();
 
-serverConfig(app);
-
 // Проверка подключения к базе данных
 (async () => {
   try {
     await sequelize.authenticate();
-    console.log("\u001b[32m✅ Подключение к базе данных установлено успешно\u001b[0m");
-    
+    console.log(
+      "\u001b[32m✅ Подключение к базе данных установлено успешно\u001b[0m"
+    );
+
     // Синхронизация моделей с базой данных (опционально, лучше использовать миграции)
     // await sequelize.sync({ alter: false });
   } catch (error) {
-    console.error("\u001b[31m❌ Ошибка подключения к базе данных:\u001b[0m", error.message);
+    console.error(
+      "\u001b[31m❌ Ошибка подключения к базе данных:\u001b[0m",
+      error.message
+    );
   }
 })();
 
@@ -40,7 +43,9 @@ app.get("/api/my-cookie", (req, res) => {
   console.log("req.cookies", req.cookies);
   res.send("done");
 });
+serverConfig(app);
 app.use("/api", apiRoutes);
+app.use("/files", express.static(path.resolve(__dirname, "..", "public")));
 
 app.listen(PORT, () => {
   console.log(

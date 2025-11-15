@@ -8,6 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+
       teacher_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -17,6 +18,7 @@ module.exports = {
         },
         onDelete: "CASCADE",
       },
+
       user_id: {
         type: Sequelize.INTEGER,
         allowNull: false,
@@ -26,15 +28,23 @@ module.exports = {
         },
         onDelete: "CASCADE",
       },
+
       text: {
         type: Sequelize.TEXT,
         allowNull: false,
       },
+
+      file_path: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn("NOW"),
       },
+
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -42,6 +52,7 @@ module.exports = {
       },
     });
   },
+
   async down(queryInterface) {
     await queryInterface.dropTable("Faqs");
   },

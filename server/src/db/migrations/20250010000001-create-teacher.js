@@ -8,6 +8,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+
       first_name: {
         type: Sequelize.STRING,
         allowNull: false,
@@ -20,6 +21,7 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+
       faculty: {
         type: Sequelize.STRING,
         allowNull: true,
@@ -28,6 +30,12 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
+
+      avatar: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
@@ -40,6 +48,7 @@ module.exports = {
       },
     });
   },
+
   async down(queryInterface) {
     await queryInterface.dropTable("Teachers");
   },

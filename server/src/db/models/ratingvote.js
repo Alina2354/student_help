@@ -1,22 +1,19 @@
 "use strict";
 const { Model } = require("sequelize");
-
 module.exports = (sequelize, DataTypes) => {
-  class Faq extends Model {
+  class RatingVote extends Model {
     static associate(models) {
-      Faq.belongsTo(models.Teacher, {
+      RatingVote.belongsTo(models.Teacher, {
         foreignKey: "teacher_id",
         as: "teacher",
       });
-
-      Faq.belongsTo(models.User, {
+      RatingVote.belongsTo(models.User, {
         foreignKey: "user_id",
         as: "user",
       });
     }
   }
-
-  Faq.init(
+  RatingVote.init(
     {
       teacher_id: {
         type: DataTypes.INTEGER,
@@ -26,7 +23,6 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-
       user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
@@ -35,22 +31,21 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-
-      text: {
-        type: DataTypes.TEXT,
+      rating_type: {
+        type: DataTypes.ENUM("rating5", "rating4", "rating3"),
         allowNull: false,
-      },
-
-      file_path: {
-        type: DataTypes.STRING,
-        allowNull: true,
       },
     },
     {
       sequelize,
-      modelName: "Faq",
+      modelName: "RatingVote",
+      indexes: [
+        {
+          unique: true,
+          fields: ["teacher_id", "user_id"],
+        },
+      ],
     }
   );
-
-  return Faq;
+  return RatingVote;
 };

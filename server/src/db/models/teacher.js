@@ -15,6 +15,14 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "teacher_id",
         as: "faqs",
       });
+      Teacher.hasMany(models.RatingVote, {
+        foreignKey: "teacher_id",
+        as: "votes",
+      });
+      Teacher.hasMany(models.GradeRequirements, {
+        foreignKey: "teacher_id",
+        as: "gradeRequirements",
+      });
     }
   }
   Teacher.init(
@@ -36,6 +44,10 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: true,
       },
       department: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
+      avatar: {
         type: DataTypes.STRING,
         allowNull: true,
       },

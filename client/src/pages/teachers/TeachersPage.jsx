@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import TeacherApi from "../../entites/teacher/api/TeacherApi";
+import axiosInstance from "../../shared/lib/axiosInstace";
 import styles from "./TeachersPage.module.css";
 
 export default function TeachersPage() {
@@ -28,6 +29,12 @@ export default function TeachersPage() {
     }
   };
 
+  const getAvatarUrl = (avatarPath) => {
+    if (!avatarPath) return null;
+    if (avatarPath.startsWith("http")) return avatarPath;
+    return `${axiosInstance.defaults.baseURL}${avatarPath}`;
+  };
+
   if (isLoading) {
     return <div className={styles.loading}>Загрузка...</div>;
   }
@@ -46,14 +53,24 @@ export default function TeachersPage() {
             className={styles.teacherCard}
             onClick={() => navigate(`/teacher/${teacher.id}`)}
           >
+            {teacher.avatar && (
+              <img
+                src={getAvatarUrl(teacher.avatar)}
+                alt="Аватар"
+                className={styles.teacherAvatar}
+              />
+            )}
             <h3 className={styles.teacherName}>
-              {teacher.last_name} {teacher.first_name} {teacher.middle_name || ""}
+              {teacher.last_name} {teacher.first_name}{" "}
+              {teacher.middle_name || ""}
             </h3>
             {teacher.faculty && (
               <p className={styles.teacherInfo}>Факультет: {teacher.faculty}</p>
             )}
             {teacher.department && (
-              <p className={styles.teacherInfo}>Кафедра: {teacher.department}</p>
+              <p className={styles.teacherInfo}>
+                Кафедра: {teacher.department}
+              </p>
             )}
             {teacher.disciplines && teacher.disciplines.length > 0 && (
               <p className={styles.teacherInfo}>
@@ -69,5 +86,3 @@ export default function TeachersPage() {
     </div>
   );
 }
-
-

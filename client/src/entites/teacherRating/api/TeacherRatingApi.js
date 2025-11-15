@@ -38,4 +38,11 @@ export default class TeacherRatingApi {
     const response = await axiosInstance.delete(`/teacher-ratings/${id}`);
     return response.data;
   }
+
+  static async resetUserVote(teacherId) {
+    const response = await axiosInstance.post("/teacher-ratings/reset-vote", {
+      teacherId
+    });
+    return response.data;
+  }
 }

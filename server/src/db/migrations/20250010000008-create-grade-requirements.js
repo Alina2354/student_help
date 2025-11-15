@@ -1,29 +1,46 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("ChatMessages", {
+    await queryInterface.createTable("GradeRequirements", {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      user_id: {
+      teacher_id: {
         type: Sequelize.INTEGER,
-        allowNull: true,
+        allowNull: false,
         references: {
-          model: "Users",
+          model: "Teachers",
           key: "id",
         },
         onDelete: "CASCADE",
       },
-      sender: {
-        type: Sequelize.ENUM("user", "assistant"),
+      discipline_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Disciplines",
+          key: "id",
+        },
+        onDelete: "CASCADE",
+      },
+      semester: {
+        type: Sequelize.INTEGER,
         allowNull: false,
       },
-      content: {
+      requirements_5: {
         type: Sequelize.TEXT,
-        allowNull: false,
+        allowNull: true,
+      },
+      requirements_4: {
+        type: Sequelize.TEXT,
+        allowNull: true,
+      },
+      requirements_3: {
+        type: Sequelize.TEXT,
+        allowNull: true,
       },
       createdAt: {
         allowNull: false,
@@ -38,6 +55,6 @@ module.exports = {
     });
   },
   async down(queryInterface) {
-    await queryInterface.dropTable("ChatMessages");
+    await queryInterface.dropTable("GradeRequirements");
   },
 };

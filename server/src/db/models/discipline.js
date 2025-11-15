@@ -7,6 +7,10 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "teacher_id",
         as: "teacher",
       });
+      Discipline.hasMany(models.GradeRequirements, {
+        foreignKey: "discipline_id",
+        as: "gradeRequirements",
+      });
     }
   }
   Discipline.init(

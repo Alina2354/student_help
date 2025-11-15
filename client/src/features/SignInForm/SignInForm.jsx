@@ -1,54 +1,78 @@
 import { useNavigate } from "react-router-dom";
 import UserApi from "../../entites/user/api/UserApi";
-import styles from "./SignInForm.module.css";
 import { setAccessToken } from "../../shared/lib/axiosInstace";
+import styles from "./SignInForm.module.css";
 
-export default function LoginForm({setUser}) {
+export default function SignInForm({ setUser }) {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate()
+  const signInHandler = async (event) => {
+    event.preventDefault();
 
-  const signInHandler= async (event) => {
-    try {  
-      event.preventDefault() // передотвращаем поведение элемента по умолчанию 
-      const formData = Object.fromEntries(new FormData(event.target)); // формируем новый объект из данный в инпутах
-      const res = await UserApi.login(formData)
+    try {
+      const formData = Object.fromEntries(new FormData(event.target));
+      const res = await UserApi.login(formData);
 
-      // Сохраняем accessToken
       if (res.data?.data?.accessToken) {
         setAccessToken(res.data.data.accessToken);
       }
 
-      setUser({status: "logged", data: res.data.data.user})
-      navigate("/")
-
-
+      setUser({ status: "logged", data: res.data.data.user });
+      navigate("/");
     } catch (error) {
-        console.log(error);
-      const errorMessage = error.response?.data?.message || error.response?.data?.error || "Произошла ошибка при входе";
-      alert(errorMessage)
+      console.log(error);
+      const errorMessage =
+        error.response?.data?.message ||
+        error.response?.data?.error ||
+        "Произошла ошибка при входе";
+      alert(errorMessage);
     }
   };
 
   return (
-    <div className={styles.container}>
-      <form className={styles.form} onSubmit={signInHandler}>
-        <div className={styles.inputGroup}>
-          <div className={styles.inputLabel}>Email</div>
-          <input className={styles.input} name="email" type="email" required />
+    <div className={styles.page}>
+      <div className={styles.loginContainer}>
+        <div className={styles.backButton} onClick={() => navigate("/")}>
+          <span>←</span> Назад
         </div>
-        <div className={styles.inputGroup}>
-          <div className={styles.inputLabel}>Password</div>
-          <input
-            className={styles.input}
-            name="password"
-            type="password"
-            required
-          />
+
+        <div className={styles.slothImage}>
+          <img src="/IMG_5454 1.svg" alt="sloth" />
         </div>
-        <button type="submit" className={styles.submitButton}>
-          Подтвердить
-        </button>
-      </form>
+
+        <h2 className={styles.title}>Добро пожаловать в нашу тусовку!</h2>
+
+        <form className={styles.loginForm} onSubmit={signInHandler}>
+          <div className={styles.inputGroup}>
+            <input type="email" name="email" placeholder="Email" required />
+          </div>
+
+          <div className={styles.inputGroup}>
+            <input
+              type="password"
+              name="password"
+              placeholder="Пароль"
+              required
+            />
+          </div>
+
+          <div className={styles.forgotPassword}>
+            <a href="#">Забыли пароль?</a>
+          </div>
+
+          <div className={styles.buttonGroup}>
+            <button type="submit" className={styles.btnLogin}>
+              Войти
+            </button>
+            <a
+              className={styles.btnRegister}
+              onClick={() => navigate("/signUp")}
+            >
+              Регистрация
+            </a>
+          </div>
+        </form>
+      </div>
     </div>
   );
 }

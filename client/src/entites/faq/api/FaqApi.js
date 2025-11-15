@@ -21,8 +21,13 @@ export default class FaqApi {
     return response.data;
   }
 
-  static async createFaq(faqData) {
-    const response = await axiosInstance.post("/faqs", faqData);
+  static async createFaq(formData) {
+    // FormData автоматически устанавливает правильный Content-Type с boundary
+    const response = await axiosInstance.post("/faqs", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     return response.data;
   }
 
@@ -34,5 +39,9 @@ export default class FaqApi {
   static async deleteFaq(id) {
     const response = await axiosInstance.delete(`/faqs/${id}`);
     return response.data;
+  }
+
+  static getFileDownloadUrl(id) {
+    return `${axiosInstance.defaults.baseURL}/faqs/${id}/download`;
   }
 }

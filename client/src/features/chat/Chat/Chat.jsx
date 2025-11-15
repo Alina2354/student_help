@@ -43,16 +43,13 @@ export default function Chat({ user }) {
     setIsLoading(true);
 
     try {
-      // Сохраняем сообщение пользователя, если он авторизован
-      if (user?.status === "logged" && user?.data?.id) {
-        await ChatMessageApi.createMessage({
-          content,
-          sender: "user"
-        });
-      }
+      // Сохраняем сообщение пользователя (даже если не авторизован, user_id будет null)
+      await ChatMessageApi.createMessage({
+        content,
+        sender: "user"
+      });
 
-      // Имитация ответа ассистента (в реальности здесь будет вызов AI API)
-      // Пока делаем простой поиск преподавателей
+      // Имитация ответа ассистента
       let assistantResponse = "Извините, я не понял ваш запрос.";
 
       if (content.trim().length > 0) {
@@ -88,13 +85,11 @@ export default function Chat({ user }) {
 
       setMessages((prev) => [...prev, assistantMessage]);
 
-      // Сохраняем ответ ассистента, если пользователь авторизован
-      if (user?.status === "logged" && user?.data?.id) {
-        await ChatMessageApi.createMessage({
-          content: assistantResponse,
-          sender: "assistant"
-        });
-      }
+      // Сохраняем ответ ассистента
+      await ChatMessageApi.createMessage({
+        content: assistantResponse,
+        sender: "assistant"
+      });
     } catch (error) {
       console.error("Ошибка отправки сообщения:", error);
       const errorMessage = {

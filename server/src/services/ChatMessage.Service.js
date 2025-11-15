@@ -1,56 +1,48 @@
-
-
-
 const { ChatMessage } = require("../db/models");
 
 class ChatMessageService {
   static async getAllMessages() {
     return ChatMessage.findAll({
-      include: [{ 
-        association: "user",
-        attributes: ["id", "name", "email"]
-      }],
-      order: [["createdAt", "ASC"]]
+      include: [
+        {
+          association: "user",
+          attributes: ["id", "name", "email"],
+          required: false,
+        },
+      ],
+      order: [["createdAt", "ASC"]],
     });
   }
 
   static async getMessagesByUserId(userId) {
     return ChatMessage.findAll({
       where: { user_id: userId },
-      include: [{ 
-        association: "user",
-        attributes: ["id", "name", "email"]
-      }],
-      order: [["createdAt", "ASC"]]
+      include: [
+        {
+          association: "user",
+          attributes: ["id", "name", "email"],
+          required: false,
+        },
+      ],
+      order: [["createdAt", "ASC"]],
     });
   }
 
   static async getMessageById(id) {
     return ChatMessage.findByPk(id, {
-      include: [{ 
-        association: "user",
-        attributes: ["id", "name", "email"]
-      }]
+      include: [
+        {
+          association: "user",
+          attributes: ["id", "name", "email"],
+          required: false,
+        },
+      ],
     });
   }
 
   static async createMessage(data) {
-    // Сохраняем сообщение только если user_id указан (пользователь залогинен)
-    if (!data.user_id) {
-      throw new Error("Сообщение может быть сохранено только для авторизованных пользователей");
-    }
+    // Теперь сохраняем все сообщения, даже если user_id null
     return ChatMessage.create(data);
-  }
-
-  static async createMessageForGuest(content, sender) {
-    // Для неавторизованных пользователей не сохраняем в БД
-    // Возвращаем объект без сохранения
-    return {
-      content,
-      sender,
-      user_id: null,
-      createdAt: new Date()
-    };
   }
 
   static async updateMessage(id, data) {
@@ -67,7 +59,7 @@ class ChatMessageService {
 
   static async deleteMessagesByUserId(userId) {
     return ChatMessage.destroy({
-      where: { user_id: userId }
+      where: { user_id: userId },
     });
   }
 }

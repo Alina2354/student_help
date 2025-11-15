@@ -12,6 +12,9 @@ router.get("/:id", verifyAccessToken, teacherRatingController.getRatingById);
 // Любой авторизованный пользователь может увеличить рейтинг
 router.post("/increment", verifyAccessToken, teacherRatingController.incrementRating);
 
+// Сброс голоса (для админа)
+router.post("/reset-vote", verifyAccessToken, teacherRatingController.resetUserVote);
+
 // Админские маршруты
 router.post("/", verifyAccessToken, verifyAdmin, teacherRatingController.createRating);
 router.put("/:id", verifyAccessToken, verifyAdmin, teacherRatingController.updateRating);
