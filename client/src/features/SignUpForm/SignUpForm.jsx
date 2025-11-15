@@ -26,7 +26,7 @@ export default function SignUpForm({ setUser }) {
       }
 
       setUser({ status: "logged", data: res.data.data.user });
-      navigate("/personalAccount");
+      navigate("/");
     } catch (error) {
       console.log(error);
       const errorMessage =

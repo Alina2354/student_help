@@ -11,7 +11,8 @@ class OpenRouterService {
           messages: [
             {
               role: "system",
-              content: `Ты помощник для студентов. Твоя задача - помогать студентам находить информацию о преподавателях, дисциплинах и отвечать на вопросы об учебе.
+              content:
+                `Ты помощник для студентов. Твоя задача - помогать студентам находить информацию о преподавателях, дисциплинах и отвечать на вопросы об учебе. не в коем случае не отвечай мне , что такое сук! говори я не знаю!
 
 Если студент спрашивает о преподавателе или дисциплине, сначала попробуй найти информацию через поиск. Если не найдено, дай общий ответ.
 
@@ -37,7 +38,10 @@ class OpenRouterService {
       const content = response.data.choices[0].message.content.trim();
       return content;
     } catch (err) {
-      console.error("Ошибка OpenRouter API:", err.response?.data || err.message);
+      console.error(
+        "Ошибка OpenRouter API:",
+        err.response?.data || err.message
+      );
       throw new Error("Ошибка при запросе к OpenRouter API");
     }
   }

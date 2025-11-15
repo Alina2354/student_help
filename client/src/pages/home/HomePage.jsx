@@ -4,7 +4,7 @@ import styles from "./HomePage.module.css";
 
 export default function HomePage({ user }) {
   const [message, setMessage] = useState("");
-  const [reply, setReply] = useState("");
+  const [chat, setChat] = useState([]); // <— ИСТОРИЯ ЧАТА
   const [loading, setLoading] = useState(false);
 
   const chatRef = useRef(null);
@@ -12,33 +12,48 @@ export default function HomePage({ user }) {
   const sendMessage = async () => {
     if (!message.trim() || loading) return;
 
+    const userMsg = {
+      role: "user",
+      text: message.trim(),
+    };
+
+    // Добавляем сообщение пользователя
+    setChat((prev) => [...prev, userMsg]);
+    setMessage("");
     setLoading(true);
-    setReply("");
 
     try {
       const res = await axios.post("http://localhost:3000/api/ai", {
-        message,
+        message: userMsg.text,
       });
 
-      if (res.data?.reply) {
-        setReply(res.data.reply);
-      } else {
-        setReply("Ответ не получен.");
-      }
+      const aiText =
+        res.data?.reply || "Ответ не получен.";
+
+      const aiMsg = {
+        role: "ai",
+        text: aiText,
+      };
+
+      setChat((prev) => [...prev, aiMsg]);
     } catch (err) {
       console.error("AI ERROR:", err);
-      setReply("Ошибка при обращении к AI.");
+
+      setChat((prev) => [
+        ...prev,
+        { role: "ai", text: "Ошибка при обращении к AI." },
+      ]);
     } finally {
       setLoading(false);
-      setMessage("");
     }
   };
 
   const clearChat = () => {
-    setReply("");
+    setChat([]);
     setMessage("");
   };
 
+  // Автоскролл вниз при добавлении сообщения
   useEffect(() => {
     if (chatRef.current) {
       chatRef.current.scrollTo({
@@ -46,14 +61,15 @@ export default function HomePage({ user }) {
         behavior: "smooth",
       });
     }
-  }, [reply]);
+  }, [chat]);
 
   return (
     <div className={styles.page}>
       <main className={styles.chatWrapper}>
         <div className={styles.chatContainer} ref={chatRef}>
-          {/* Превью */}
-          {!reply && (
+
+          {/* Превью — показываем только когда нет сообщений */}
+          {chat.length === 0 && (
             <div className={styles.chatPreview}>
               <img src="/IMG_5467 1.png" className={styles.previewIcon} />
               <h3>
@@ -64,10 +80,25 @@ export default function HomePage({ user }) {
             </div>
           )}
 
-          {/* Ответ ИИ */}
-          {reply && (
+          {/* История сообщений */}
+          {chat.map((msg, index) => (
+            <div
+              key={index}
+              className={styles.replyBubble}
+              style={{
+                alignSelf: msg.role === "user" ? "flex-end" : "flex-start",
+                background:
+                  msg.role === "user" ? "#ECE8FF" : "#FFFFFF",
+              }}
+            >
+              {msg.text}
+            </div>
+          ))}
+
+          {/* Сообщение "Думаю..." */}
+          {loading && (
             <div className={styles.replyBubble}>
-              {loading ? "Думаю..." : reply}
+              Думаю...
             </div>
           )}
         </div>
