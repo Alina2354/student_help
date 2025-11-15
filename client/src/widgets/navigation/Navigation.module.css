@@ -41,7 +41,7 @@
   color: #7c4dff;
 }
 
-/* КНОПКА ВЫЙТИ */
+/* КНОПКА "Выйти" */
 .linkButton {
   background: none;
   border: none;
@@ -52,56 +52,4 @@
 
 .linkButton:hover {
   color: #7c4dff;
-}
-
-/* 📱 МОБИЛЬНЫЙ АДАПТИВ */
-@media (max-width: 768px) {
-  .header {
-    padding: 12px 16px;
-    font-size: 16px;
-  }
-
-  .left {
-    gap: 12px;
-  }
-
-  .right {
-    gap: 12px;
-  }
-
-  .logo {
-    width: 36px;
-    height: 36px;
-  }
-
-  .link,
-  .linkButton {
-    font-size: 14px;
-  }
-}
-
-/* 📱 СУПЕР-МОБИЛЬНЫЙ (iPhone SE, маленькие экраны) */
-@media (max-width: 480px) {
-  .header {
-    flex-direction: column;
-    gap: 12px;
-    padding: 12px;
-  }
-
-  .left,
-  .right {
-    width: 100%;
-    justify-content: center;
-    gap: 16px;
-  }
-
-  .logo {
-    width: 32px;
-    height: 32px;
-  }
-
-  .link,
-  .linkButton {
-    font-size: 13px;
-  }
 }

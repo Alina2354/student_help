@@ -73,9 +73,9 @@ export default function HomePage({ user }) {
             <div className={styles.chatPreview}>
               <img src="/IMG_5467 1.png" className={styles.previewIcon} />
               <h3>
-                Привет, любимка!
+                Привет, {user?.data?.name}!
                 <br />
-                Задай любой вопрос и я на него отвечу
+                Задай любой вопрос и я на него отвечу XD
               </h3>
             </div>
           )}

@@ -20,7 +20,6 @@ export default function Navigation({ setUser, user }) {
 
   return (
     <header className={styles.header}>
-      
       {/* ЛОГО + ЛЕВАЯ НАВИГАЦИЯ */}
       <div className={styles.left}>
         <img
@@ -43,6 +42,11 @@ export default function Navigation({ setUser, user }) {
       <div className={styles.right}>
         {user?.status === "logged" ? (
           <>
+            {/* Имя пользователя */}
+            <div className={styles.userName}>
+              {user?.data?.name}
+            </div>
+
             {user?.data?.is_admin && (
               <NavLink to="/admin" className={styles.link}>
                 Админ-панель
