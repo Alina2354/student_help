@@ -1,7 +1,7 @@
 
 
 
-const { Teacher, Discipline } = require("../db/models");
+const { Teacher, Discipline, GradeRequirements } = require("../db/models");
 const { Op } = require("sequelize");
 
 class TeacherService {
@@ -42,6 +42,15 @@ class TeacherService {
             }
           ],
           order: [["createdAt", "DESC"]]
+        },
+        {
+          association: "gradeRequirements",
+          include: [
+            {
+              association: "discipline",
+              attributes: ["id", "title", "semester"]
+            }
+          ]
         }
       ]
     });

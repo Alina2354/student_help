@@ -41,6 +41,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
 
+      answer: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+
       file_path: {
         type: DataTypes.STRING,
         allowNull: true,

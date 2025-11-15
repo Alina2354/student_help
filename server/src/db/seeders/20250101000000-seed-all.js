@@ -114,9 +114,13 @@ module.exports = {
       },
     ];
 
-    const insertedTeachers = await queryInterface.bulkInsert("Teachers", teachers, {
-      returning: true,
-    });
+    const insertedTeachers = await queryInterface.bulkInsert(
+      "Teachers",
+      teachers,
+      {
+        returning: true,
+      }
+    );
 
     const [t1, t2, t3, t4, t5] = insertedTeachers;
 
@@ -125,29 +129,119 @@ module.exports = {
     //
     const disciplines = [
       // teacher 1
-      { teacher_id: t1.id, title: "Дискретная математика", semester: 1, createdAt: now, updatedAt: now },
-      { teacher_id: t1.id, title: "Базы данных", semester: 2, createdAt: now, updatedAt: now },
-      { teacher_id: t1.id, title: "Алгоритмы", semester: 3, createdAt: now, updatedAt: now },
+      {
+        teacher_id: t1.id,
+        title: "Дискретная математика",
+        semester: 1,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t1.id,
+        title: "Базы данных",
+        semester: 2,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t1.id,
+        title: "Алгоритмы",
+        semester: 3,
+        createdAt: now,
+        updatedAt: now,
+      },
 
       // teacher 2
-      { teacher_id: t2.id, title: "Программирование JS", semester: 1, createdAt: now, updatedAt: now },
-      { teacher_id: t2.id, title: "Информационная безопасность", semester: 4, createdAt: now, updatedAt: now },
-      { teacher_id: t2.id, title: "Сети и протоколы", semester: 5, createdAt: now, updatedAt: now },
+      {
+        teacher_id: t2.id,
+        title: "Программирование JS",
+        semester: 1,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t2.id,
+        title: "Информационная безопасность",
+        semester: 4,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t2.id,
+        title: "Сети и протоколы",
+        semester: 5,
+        createdAt: now,
+        updatedAt: now,
+      },
 
       // teacher 3
-      { teacher_id: t3.id, title: "Операционные системы", semester: 2, createdAt: now, updatedAt: now },
-      { teacher_id: t3.id, title: "Криптография", semester: 3, createdAt: now, updatedAt: now },
-      { teacher_id: t3.id, title: "Практика backend", semester: 4, createdAt: now, updatedAt: now },
+      {
+        teacher_id: t3.id,
+        title: "Операционные системы",
+        semester: 2,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t3.id,
+        title: "Криптография",
+        semester: 3,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t3.id,
+        title: "Практика backend",
+        semester: 4,
+        createdAt: now,
+        updatedAt: now,
+      },
 
       // teacher 4
-      { teacher_id: t4.id, title: "Математический анализ", semester: 1, createdAt: now, updatedAt: now },
-      { teacher_id: t4.id, title: "Физика", semester: 2, createdAt: now, updatedAt: now },
-      { teacher_id: t4.id, title: "Моделирование", semester: 3, createdAt: now, updatedAt: now },
+      {
+        teacher_id: t4.id,
+        title: "Математический анализ",
+        semester: 1,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t4.id,
+        title: "Физика",
+        semester: 2,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t4.id,
+        title: "Моделирование",
+        semester: 3,
+        createdAt: now,
+        updatedAt: now,
+      },
 
       // teacher 5
-      { teacher_id: t5.id, title: "Архитектура ПО", semester: 4, createdAt: now, updatedAt: now },
-      { teacher_id: t5.id, title: "Структуры данных", semester: 5, createdAt: now, updatedAt: now },
-      { teacher_id: t5.id, title: "Алгоритмические методы", semester: 6, createdAt: now, updatedAt: now },
+      {
+        teacher_id: t5.id,
+        title: "Архитектура ПО",
+        semester: 4,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t5.id,
+        title: "Структуры данных",
+        semester: 5,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t5.id,
+        title: "Алгоритмические методы",
+        semester: 6,
+        createdAt: now,
+        updatedAt: now,
+      },
     ];
 
     const insertedDisciplines = await queryInterface.bulkInsert(
@@ -178,11 +272,46 @@ module.exports = {
     // 5. TEACHER RATINGS
     //
     const ratings = [
-      { teacher_id: t1.id, rating5: 5, rating4: 3, rating3: 1, createdAt: now, updatedAt: now },
-      { teacher_id: t2.id, rating5: 7, rating4: 2, rating3: 1, createdAt: now, updatedAt: now },
-      { teacher_id: t3.id, rating5: 6, rating4: 3, rating3: 2, createdAt: now, updatedAt: now },
-      { teacher_id: t4.id, rating5: 4, rating4: 4, rating3: 3, createdAt: now, updatedAt: now },
-      { teacher_id: t5.id, rating5: 8, rating4: 1, rating3: 1, createdAt: now, updatedAt: now },
+      {
+        teacher_id: t1.id,
+        rating5: 5,
+        rating4: 3,
+        rating3: 1,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t2.id,
+        rating5: 7,
+        rating4: 2,
+        rating3: 1,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t3.id,
+        rating5: 6,
+        rating4: 3,
+        rating3: 2,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t4.id,
+        rating5: 4,
+        rating4: 4,
+        rating3: 3,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t5.id,
+        rating5: 8,
+        rating4: 1,
+        rating3: 1,
+        createdAt: now,
+        updatedAt: now,
+      },
     ];
 
     await queryInterface.bulkInsert("TeacherRatings", ratings);
@@ -191,9 +320,27 @@ module.exports = {
     // 6. RATING VOTES — строго уникальные
     //
     const votes = [
-      { teacher_id: t1.id, user_id: u1.id, rating_type: "rating5", createdAt: now, updatedAt: now },
-      { teacher_id: t2.id, user_id: u2.id, rating_type: "rating4", createdAt: now, updatedAt: now },
-      { teacher_id: t3.id, user_id: u3.id, rating_type: "rating3", createdAt: now, updatedAt: now },
+      {
+        teacher_id: t1.id,
+        user_id: u1.id,
+        rating_type: "rating5",
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t2.id,
+        user_id: u2.id,
+        rating_type: "rating4",
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t3.id,
+        user_id: u3.id,
+        rating_type: "rating3",
+        createdAt: now,
+        updatedAt: now,
+      },
     ];
 
     await queryInterface.bulkInsert("RatingVotes", votes);
@@ -202,14 +349,50 @@ module.exports = {
     // 7. CHAT MESSAGES
     //
     const messages = [
-      { user_id: u1.id, sender: "user", content: "Здравствуйте! Подскажите по курсу?", createdAt: now, updatedAt: now },
-      { user_id: u1.id, sender: "assistant", content: "Слушаю вас.", createdAt: now, updatedAt: now },
+      {
+        user_id: u1.id,
+        sender: "user",
+        content: "Здравствуйте! Подскажите по курсу?",
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        user_id: u1.id,
+        sender: "assistant",
+        content: "Слушаю вас.",
+        createdAt: now,
+        updatedAt: now,
+      },
 
-      { user_id: u2.id, sender: "user", content: "Не понимаю алгоритмы", createdAt: now, updatedAt: now },
-      { user_id: u2.id, sender: "assistant", content: "Могу объяснить подробнее.", createdAt: now, updatedAt: now },
+      {
+        user_id: u2.id,
+        sender: "user",
+        content: "Не понимаю алгоритмы",
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        user_id: u2.id,
+        sender: "assistant",
+        content: "Могу объяснить подробнее.",
+        createdAt: now,
+        updatedAt: now,
+      },
 
-      { user_id: null, sender: "user", content: "Я гость, помогите найти преподавателя", createdAt: now, updatedAt: now },
-      { user_id: null, sender: "assistant", content: "Уточните имя преподавателя.", createdAt: now, updatedAt: now },
+      {
+        user_id: null,
+        sender: "user",
+        content: "Я гость, помогите найти преподавателя",
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        user_id: null,
+        sender: "assistant",
+        content: "Уточните имя преподавателя.",
+        createdAt: now,
+        updatedAt: now,
+      },
     ];
 
     await queryInterface.bulkInsert("ChatMessages", messages);
@@ -218,9 +401,33 @@ module.exports = {
     // 8. FAQ
     //
     const faqs = [
-      { teacher_id: t1.id, user_id: u1.id, text: "Как проходит экзамен?", createdAt: now, updatedAt: now },
-      { teacher_id: t2.id, user_id: u2.id, text: "Будет ли пересдача?", createdAt: now, updatedAt: now },
-      { teacher_id: t3.id, user_id: u3.id, text: "Доступны ли конспекты?", createdAt: now, updatedAt: now },
+      {
+        teacher_id: t1.id,
+        user_id: u1.id,
+        text: "Как проходит экзамен?",
+        answer: "Экзамен проходит письменно, длится 90 минут.",
+        file_path: null,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t2.id,
+        user_id: u2.id,
+        text: "Будет ли пересдача?",
+        answer: "Пересдача доступна один раз в конце семестра.",
+        file_path: null,
+        createdAt: now,
+        updatedAt: now,
+      },
+      {
+        teacher_id: t3.id,
+        user_id: u3.id,
+        text: "Доступны ли конспекты?",
+        answer: "Да, конспекты доступны в Google Drive.",
+        file_path: null,
+        createdAt: now,
+        updatedAt: now,
+      },
     ];
 
     await queryInterface.bulkInsert("Faqs", faqs);
@@ -235,5 +442,5 @@ module.exports = {
     await queryInterface.bulkDelete("Disciplines", null, {});
     await queryInterface.bulkDelete("Teachers", null, {});
     await queryInterface.bulkDelete("Users", null, {});
-  }
+  },
 };

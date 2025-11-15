@@ -242,6 +242,18 @@ export default function AdminPage({ user }) {
     }
   };
 
+  const handleAddAnswer = async (faqId, answer) => {
+    try {
+      const response = await FaqApi.addAnswerToFaq(faqId, answer);
+      if (response.statusCode === 200) {
+        loadData();
+      }
+    } catch (err) {
+      alert("Ошибка при добавлении ответа");
+      console.error(err);
+    }
+  };
+
   const getAvatarUrl = (avatarPath) => {
     if (!avatarPath) return null;
     if (avatarPath.startsWith("http")) return avatarPath;
@@ -631,15 +643,33 @@ export default function AdminPage({ user }) {
         <div className={styles.faqsList}>
           {faqs.map((faq) => (
             <div key={faq.id} className={styles.faqItem}>
-              <p className={styles.faqText}>{faq.text}</p>
+              <p className={styles.faqText}>
+                <strong>Вопрос:</strong> {faq.text}
+              </p>
+              {faq.answer && (
+                <p className={styles.faqAnswer}>
+                  <strong>Ответ:</strong> {faq.answer}
+                </p>
+              )}
+              {!faq.answer && (
+                <div className={styles.addAnswerForm}>
+                  <textarea
+                    placeholder="Добавить ответ на вопрос..."
+                    className={styles.answerTextarea}
+                    rows="3"
+                    onBlur={(e) => {
+                      if (e.target.value.trim()) {
+                        handleAddAnswer(faq.id, e.target.value.trim());
+                      }
+                    }}
+                  />
+                </div>
+              )}
               {faq.file_path && (
                 <p className={styles.faqFile}>📎 Прикреплен файл</p>
               )}
               <div className={styles.faqMeta}>
-                <span>
-                  Преподаватель: {faq.teacher?.last_name}{" "}
-                  {faq.teacher?.first_name}
-                </span>
+                <span>Преподаватель: {faq.teacher?.last_name} {faq.teacher?.first_name}</span>
                 <span>От: {faq.user?.name}</span>
                 <button
                   onClick={() => handleDeleteFaq(faq.id)}

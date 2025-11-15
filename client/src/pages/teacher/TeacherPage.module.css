@@ -1,25 +1,22 @@
 @font-face {
-  font-family: 'Yandex Sans';
-  src: url('/fonts/YandexSansText-Medium.woff2') format('woff2');
+  font-family: "Yandex Sans";
+  src: url("/fonts/YandexSansText-Medium.woff2") format("woff2");
   font-weight: 500;
-  font-style: normal;
 }
 @font-face {
-  font-family: 'Yandex Sans';
-  src: url('/fonts/YandexSansText-Bold.woff2') format('woff2');
+  font-family: "Yandex Sans";
+  src: url("/fonts/YandexSansText-Bold.woff2") format("woff2");
   font-weight: 700;
 }
 @font-face {
-  font-family: 'Yandex Sans';
-  src: url('/fonts/YandexSansText-Regular.woff2') format('woff2');
+  font-family: "Yandex Sans";
+  src: url("/fonts/YandexSansText-Regular.woff2") format("woff2");
   font-weight: 400;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
 body {
-  background-color: #f5f7fa;
-  font-family: 'Yandex Sans', Arial, sans-serif;
+  background: #f5f7fa;
+  font-family: "Yandex Sans", sans-serif;
 }
 
 .cont {
@@ -27,24 +24,25 @@ body {
   padding-right: 20px;
 }
 
-/* BACK */
 .back {
   border: none;
   background: transparent;
   margin-top: 16px;
+  cursor: pointer;
 }
 
-/* HEADER */
+/* PAGE */
 .teacherPage {
   max-width: 800px;
   margin: 20px auto;
 }
 
+/* HEADER */
 .teacherHeader {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
 }
 
 .teacherAvatar {
@@ -57,7 +55,6 @@ body {
 .teacherInfo h1 {
   font-size: 24px;
   font-weight: 700;
-  color: #111;
 }
 
 .teacherSubtitle {
@@ -65,105 +62,143 @@ body {
   color: #666;
 }
 
-/* FILTERS */
-.filters {
-  display: flex;
-  gap: 12px;
-  margin-bottom: 24px;
-}
-
-.filterBtn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background: white;
-  border: 1px solid #ddd;
-  padding: 8px 16px;
-  border-radius: 12px;
-  cursor: pointer;
-}
-
-/* CONTENT */
-.contentContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
 /* REQUIREMENTS */
+.requireMainHeader {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 20px 0 12px;
+}
+
 .requirementsSection {
-  background: white;
+  background: #fff;
   padding: 20px;
   border-radius: 16px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
-.requirementsSection h3 {
+.requireDiscipline {
   font-size: 18px;
+  font-weight: 600;
   margin-bottom: 12px;
 }
 
 .requireHeader {
-  margin-top: 12px;
+  margin-top: 14px;
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 700;
 }
 
-.requirementsSection p {
-  font-size: 16px;
-  color: #666;
-  margin-top: 4px;
+.requireText {
+  font-size: 15px;
+  color: #555;
+  margin-top: 6px;
+  line-height: 1.45;
 }
 
 /* FAQ */
 .faqHeader {
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
-  margin: 24px 0 16px;
+  margin: 26px 0 16px;
 }
 
 .faqItem {
-  background: white;
+  background: #fff;
   border-radius: 16px;
+  margin-bottom: 12px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .faqQuestion {
   width: 100%;
-  padding: 16px 20px;
+  padding: 18px 20px;
   border: none;
   background: none;
   text-align: left;
   font-size: 16px;
   color: #333;
+  cursor: pointer;
   display: flex;
   justify-content: space-between;
-  cursor: pointer;
 }
 
 .faqAnswer {
-  padding: 0 20px;
   max-height: 0;
   overflow: hidden;
-  transition: max-height .3s ease;
+  padding: 0 20px;
+  transition: max-height 0.3s ease, padding 0.3s ease;
+  position: relative;
 }
 
 .faqAnswer.active {
   max-height: 500px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+  padding: 16px 20px 20px;
 }
 
-/* REVIEW BUTTON */
-.btnReview {
-  margin-top: 32px;
-  padding: 12px 20px;
-  width: 100%;
-  background: #8D4AFC;
-  color: white;
-  border-radius: 12px;
+.deleteBtn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
   border: none;
+  background: transparent;
+  font-size: 18px;
+  cursor: pointer;
+  color: #999;
+}
+
+.deleteBtn:hover {
+  color: #333;
+}
+
+/* REVIEW FORM */
+.reviewForm {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.textarea {
+  width: 100%;
+  border: 1px solid #ddd;
+  padding: 12px;
+  border-radius: 12px;
+  font-size: 15px;
+  resize: none;
+  min-height: 90px;
+  outline: none;
+}
+
+.btnReview {
+  width: 100%;
+  background: #8d4afc;
+  color: white;
+  border-radius: 14px;
+  padding: 14px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.btnReview:hover {
+  background: #7d3cf2;
+}
+
+.filterContainer {
+  margin: 10px 0 20px;
+}
+
+.filterSelect {
+  width: 150px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: white;
   font-size: 16px;
   cursor: pointer;
 }
+
+

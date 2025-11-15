@@ -124,6 +124,13 @@ class FaqController {
         return res.status(404).json(formatResponse(404, "FAQ не найден"));
       }
 
+      // Только админ может обновлять answer
+      if (req.body.answer && !res.locals.user?.is_admin) {
+        return res
+          .status(403)
+          .json(formatResponse(403, "Только администратор может добавлять ответы"));
+      }
+
       if (faq.user_id !== userId && !res.locals.user?.is_admin) {
         return res
           .status(403)
@@ -186,7 +193,7 @@ class FaqController {
   static async createFaq(req, res) {
     try {
       // Multer уже обработал файл, теперь парсим req.body
-      const { teacher_id, text } = req.body;
+      const { teacher_id, text, answer } = req.body;
       const userId = res.locals.user?.id;
 
       if (!userId) {
@@ -210,6 +217,7 @@ class FaqController {
         teacher_id: parseInt(teacher_id),
         user_id: userId,
         text: text.trim(),
+        answer: answer ? answer.trim() : null,
         file_path: filePath,
       });
       res.status(201).json(formatResponse(201, "FAQ создан", faq));
