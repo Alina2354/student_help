@@ -1,333 +1,169 @@
-.container {
-  padding: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
+@font-face {
+  font-family: 'Yandex Sans';
+  src: url('/fonts/YandexSansText-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Yandex Sans';
+  src: url('/fonts/YandexSansText-Bold.woff2') format('woff2');
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'Yandex Sans';
+  src: url('/fonts/YandexSansText-Regular.woff2') format('woff2');
+  font-weight: 400;
 }
 
-.teacherInfo {
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background-color: #f5f7fa;
+  font-family: 'Yandex Sans', Arial, sans-serif;
+}
+
+.cont {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+/* BACK */
+.back {
+  border: none;
+  background: transparent;
+  margin-top: 16px;
+}
+
+/* HEADER */
+.teacherPage {
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+.teacherHeader {
   display: flex;
-  gap: 20px;
   align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
 }
 
-.avatarContainer {
-  flex-shrink: 0;
-}
-
-.avatar {
-  width: 150px;
-  height: 150px;
+.teacherAvatar {
+  width: 64px;
+  height: 64px;
   border-radius: 50%;
   object-fit: cover;
-  border: 3px solid #0d6efd;
 }
 
-.teacherName {
-  margin-bottom: 15px;
-  color: #212529;
+.teacherInfo h1 {
+  font-size: 24px;
+  font-weight: 700;
+  color: #111;
 }
 
-.infoItem {
-  margin: 5px 0;
-  color: #6c757d;
+.teacherSubtitle {
+  font-size: 14px;
+  color: #666;
 }
 
-.section {
-  background-color: white;
-  padding: 25px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
-}
-
-.section h2 {
-  margin-bottom: 20px;
-  color: #212529;
-}
-
+/* FILTERS */
 .filters {
   display: flex;
-  gap: 20px;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
 }
 
-.filter {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.filter label {
-  font-weight: 500;
-  color: #212529;
-}
-
-.select {
-  padding: 8px 12px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 14px;
-  min-width: 150px;
-}
-
-.select:disabled {
-  background-color: #e9ecef;
-  cursor: not-allowed;
-}
-
-.disciplinesList {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.disciplineItem {
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-}
-
-.disciplineItem h4 {
-  margin-bottom: 5px;
-  color: #212529;
-}
-
-.requirements {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.requirementItem {
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-  border-left: 4px solid #0d6efd;
-}
-
-.requirementItem h3 {
-  margin-bottom: 10px;
-  color: #0d6efd;
-}
-
-.requirementItem p {
-  color: #212529;
-  line-height: 1.6;
-}
-
-.ratings {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.ratingItem {
+.filterBtn {
   display: flex;
   align-items: center;
-  gap: 15px;
-  padding: 10px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
-}
-
-.ratingValue {
-  font-weight: bold;
-  font-size: 18px;
-  min-width: 50px;
-}
-
-.ratingButton {
-  padding: 5px 15px;
-  background-color: #0d6efd;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  gap: 8px;
+  background: white;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.2s;
 }
 
-.ratingButton:hover:not(:disabled) {
-  background-color: #0b5ed7;
-}
-
-.ratingButton:disabled {
-  background-color: #6c757d;
-  cursor: not-allowed;
-  opacity: 0.6;
-}
-
-.voteWarning {
-  margin-top: 10px;
-  color: #dc3545;
-  font-size: 14px;
-  font-style: italic;
-}
-
-.faqsList {
-  max-height: 400px;
-  overflow-y: auto;
-  margin-bottom: 20px;
+/* CONTENT */
+.contentContainer {
   display: flex;
   flex-direction: column;
-  gap: 15px;
+  gap: 20px;
+}
+
+/* REQUIREMENTS */
+.requirementsSection {
+  background: white;
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.requirementsSection h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.requireHeader {
+  margin-top: 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.requirementsSection p {
+  font-size: 16px;
+  color: #666;
+  margin-top: 4px;
+}
+
+/* FAQ */
+.faqHeader {
+  font-size: 20px;
+  font-weight: 700;
+  margin: 24px 0 16px;
 }
 
 .faqItem {
-  padding: 15px;
-  background-color: #f8f9fa;
-  border-radius: 4px;
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
 }
 
-.faqText {
-  margin-bottom: 10px;
-  color: #212529;
-}
-
-.faqFile {
-  margin-bottom: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.downloadButton {
-  padding: 8px 15px;
-  background-color: #28a745;
-  color: white;
+.faqQuestion {
+  width: 100%;
+  padding: 16px 20px;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s;
-  align-self: flex-start;
-}
-
-.downloadButton:hover {
-  background-color: #218838;
-}
-
-.filePreview {
-  margin-top: 10px;
-}
-
-.previewImage {
-  max-width: 200px;
-  max-height: 200px;
-  border-radius: 4px;
-  cursor: pointer;
-  border: 1px solid #ddd;
-  transition: transform 0.2s;
-}
-
-.previewImage:hover {
-  transform: scale(1.05);
-}
-
-.faqMeta {
+  background: none;
+  text-align: left;
+  font-size: 16px;
+  color: #333;
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: #6c757d;
-  gap: 10px;
-}
-
-.deleteButton {
-  padding: 5px 10px;
-  background-color: #dc3545;
-  color: white;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
-  font-size: 12px;
 }
 
-.deleteButton:hover {
-  background-color: #c82333;
+.faqAnswer {
+  padding: 0 20px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .3s ease;
 }
 
-.faqForm {
-  margin-top: 20px;
+.faqAnswer.active {
+  max-height: 500px;
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
-.faqTextarea {
+/* REVIEW BUTTON */
+.btnReview {
+  margin-top: 32px;
+  padding: 12px 20px;
   width: 100%;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-family: inherit;
-  resize: vertical;
-  margin-bottom: 10px;
-}
-
-.fileUpload {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.fileLabel {
-  display: inline-block;
-  padding: 8px 12px;
-  background-color: #f8f9fa;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.2s;
-}
-
-.fileLabel:hover {
-  background-color: #e9ecef;
-}
-
-.fileInput {
-  display: none;
-}
-
-.removeFileButton {
-  padding: 5px 10px;
-  background-color: #dc3545;
+  background: #8D4AFC;
   color: white;
+  border-radius: 12px;
   border: none;
-  border-radius: 4px;
+  font-size: 16px;
   cursor: pointer;
-  font-size: 12px;
-}
-
-.removeFileButton:hover {
-  background-color: #c82333;
-}
-
-.submitButton {
-  padding: 10px 20px;
-  background-color: #0d6efd;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.submitButton:hover {
-  background-color: #0b5ed7;
-}
-
-.loading,
-.error {
-  text-align: center;
-  padding: 40px;
-  color: #6c757d;
-}
-
-.empty {
-  text-align: center;
-  padding: 20px;
-  color: #6c757d;
 }

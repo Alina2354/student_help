@@ -1,25 +1,55 @@
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 15px 20px;
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #dee2e6;
-  gap: 15px;
+  padding: 16px 32px;
+  background: white;
+  border-bottom: 1px solid #eee;
+  font-size: 18px;
 }
 
+/* ЛЕВАЯ ЧАСТЬ */
+.left {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ПРАВАЯ ЧАСТЬ */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ЛОГО */
+.logo {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  border-radius: 8px;
+}
+
+/* ССЫЛКИ */
 .link {
+  color: #111;
   text-decoration: none;
-  color: #212529;
-  padding: 8px 12px;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  font-weight: 500;
 }
 
 .link:hover {
-  background-color: #e9ecef;
+  color: #7c4dff;
 }
 
-.link.active {
-  background-color: #0d6efd;
-  color: white;
+/* КНОПКА "Выйти" */
+.linkButton {
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+  color: #111;
+}
+
+.linkButton:hover {
+  color: #7c4dff;
 }

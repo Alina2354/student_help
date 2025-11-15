@@ -37,7 +37,7 @@ export default function SignInForm({ setUser }) {
         </div>
 
         <div className={styles.slothImage}>
-          <img src="/IMG_5454 1.svg" alt="sloth" />
+          <img src="/IMG_5449 1.svg" alt="sloth" />
         </div>
 
         <h2 className={styles.title}>Добро пожаловать в нашу тусовку!</h2>
