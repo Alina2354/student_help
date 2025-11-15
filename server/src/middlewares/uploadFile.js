@@ -5,6 +5,11 @@ const path = require("path");
 // Папка хранения файлов
 const uploadFolder = path.resolve(__dirname, "..", "public", "faq-files");
 
+// Создаем папку, если её нет
+if (!fs.existsSync(uploadFolder)) {
+  fs.mkdirSync(uploadFolder, { recursive: true });
+  console.log("Создана папка для файлов FAQ:", uploadFolder);
+}
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -16,9 +21,6 @@ const storage = multer.diskStorage({
       "-" +
       Math.round(Math.random() * 1e9) +
       path.extname(file.originalname);
-
-    // Сохраняем относительный путь
-    req.filePath = `/faq-files/${uniqueName}`;
 
     cb(null, uniqueName);
   },
@@ -44,7 +46,7 @@ const fileFilter = (req, file, cb) => {
 const upload = multer({
   storage,
   fileFilter,
-  limits: { fileSize: 10 * 1024 * 1024 },
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
 });
 
 module.exports = upload;

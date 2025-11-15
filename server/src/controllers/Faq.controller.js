@@ -1,48 +1,7 @@
 const faqService = require("../services/Faq.Service");
 const formatResponse = require("../utils/formatResponse");
-const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-
-// Настройка multer для загрузки файлов
-const uploadDir = path.resolve(__dirname, "..", "public", "faq-files");
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
-}
-
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, uploadDir);
-  },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(null, uniqueSuffix + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({
-  storage: storage,
-  limits: {
-    fileSize: 10 * 1024 * 1024, // 10MB
-  },
-  fileFilter: (req, file, cb) => {
-    const allowedTypes = /jpeg|jpg|png|gif|pdf|doc|docx/;
-    const extname = allowedTypes.test(
-      path.extname(file.originalname).toLowerCase()
-    );
-    const mimetype = allowedTypes.test(file.mimetype);
-
-    if (mimetype && extname) {
-      return cb(null, true);
-    } else {
-      cb(
-        new Error(
-          "Недопустимый тип файла. Разрешены: jpeg, jpg, png, gif, pdf, doc, docx"
-        )
-      );
-    }
-  },
-}).single("file");
 
 class FaqController {
   static async getAllFaqs(req, res) {
@@ -192,7 +151,12 @@ class FaqController {
 
   static async createFaq(req, res) {
     try {
-      // Multer уже обработал файл, теперь парсим req.body
+      console.log("=== CREATE FAQ DEBUG ===");
+      console.log("req.body:", req.body);
+      console.log("req.file:", req.file);
+      console.log("req.files:", req.files);
+
+      // Multer уже обработал файл через middleware
       const { teacher_id, text, answer } = req.body;
       const userId = res.locals.user?.id;
 
@@ -213,6 +177,8 @@ class FaqController {
         ? `/files/faq-files/${req.file.filename}`
         : null;
 
+      console.log("Сохраненный путь к файлу:", filePath);
+
       const faq = await faqService.createFaq({
         teacher_id: parseInt(teacher_id),
         user_id: userId,
@@ -220,6 +186,7 @@ class FaqController {
         answer: answer ? answer.trim() : null,
         file_path: filePath,
       });
+      
       res.status(201).json(formatResponse(201, "FAQ создан", faq));
     } catch (error) {
       console.error("Ошибка создания FAQ:", error);
@@ -241,11 +208,10 @@ class FaqController {
       }
 
       // faq.file_path имеет формат: /files/faq-files/имя_файла.ext
-      // Нужно получить: public/faq-files/имя_файла.ext
+      // Нужно получить: faq-files/имя_файла.ext (убираем /files/)
       const relativePath = faq.file_path.replace(/^\/files\//, "");
       const absolutePath = path.resolve(
         __dirname,
-        "..",
         "..",
         "public",
         relativePath

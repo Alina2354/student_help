@@ -16,7 +16,7 @@ router.get("/my", verifyAccessToken, faqController.getMyFaqs);
 router.get("/user/:userId", verifyAccessToken, faqController.getFaqsByUserId);
 router.get("/:id", verifyAccessToken, faqController.getFaqById);
 
-// Скачивание файла (без авторизации, если файлы должны быть доступны всем)
+// Скачивание файла - БЕЗ авторизации (доступно всем)
 router.get("/:id/download", faqController.downloadFile);
 
 // Создание FAQ с загрузкой файла
