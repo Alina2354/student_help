@@ -3,6 +3,9 @@ const router = express.Router();
 const chatMessageController = require("../controllers/ChatMessage.controller");
 const verifyAccessToken = require("../middlewares/verifyAccessToken");
 
+// AI чат - доступен всем (но сохраняется только для авторизованных)
+router.post("/ai", chatMessageController.handleAIChat);
+
 // Создание сообщения доступно всем (но сохраняется только для авторизованных)
 router.post("/", chatMessageController.createMessage);
 

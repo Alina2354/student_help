@@ -1,20 +1,20 @@
 @font-face {
-  font-family: 'Yandex Sans';
-  src: url('/fonts/YandexSansText-Regular.woff2') format('woff2');
+  font-family: "Yandex Sans";
+  src: url("/fonts/YandexSansText-Regular.woff2") format("woff2");
   font-weight: 400;
 }
 @font-face {
-  font-family: 'Yandex Sans';
-  src: url('/fonts/YandexSansText-Medium.woff2') format('woff2');
+  font-family: "Yandex Sans";
+  src: url("/fonts/YandexSansText-Medium.woff2") format("woff2");
   font-weight: 500;
 }
 @font-face {
-  font-family: 'Yandex Sans';
-  src: url('/fonts/YandexSansText-Bold.woff2') format('woff2');
+  font-family: "Yandex Sans";
+  src: url("/fonts/YandexSansText-Bold.woff2") format("woff2");
   font-weight: 700;
 }
 
-/* Сброс */
+/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -22,48 +22,39 @@
 }
 
 .page {
-  background-color: #F6F5FA;
+  background-color: #f6f5fa;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Yandex Sans', sans-serif;
+  font-family: "Yandex Sans", sans-serif;
 }
 
-
-
-.btnLogin {
-  background-color: #1F1D1D;
-  color: #FDFDFD;
-  width: 68px;
-  height: 33px;
-  border: none;
-  border-radius: 8px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-/* MAIN WRAPPER */
+/* MAIN LAYOUT */
 .chatWrapper {
   display: flex;
   flex-direction: column;
   height: calc(100vh - 60px);
+  overflow: hidden; /* убираем скролл лишний */
 }
 
-/* CHAT AREA */
+/* CHAT ZONE */
 .chatContainer {
   flex: 1;
   overflow-y: auto;
-  padding: 20px;
+  padding: 24px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-/* Preview */
+/* PREVIEW */
 .chatPreview {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: auto;
+  margin-top: auto;
+  margin-bottom: auto;
   color: #666;
   font-size: 16px;
 }
@@ -75,35 +66,60 @@
 }
 
 .chatPreview h3 {
-  font-weight: 400;
+  max-width: 290px;
   font-size: 16px;
   line-height: 140%;
-  max-width: 293px;
+  font-weight: 400;
+}
+
+/* AI MESSAGE BUBBLE */
+.replyBubble {
+  max-width: 420px;
+  width: fit-content;
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px 22px;
+  margin-top: 10px;
+  margin-bottom: 26px;
+  color: #444;
+  font-size: 16px;
+  line-height: 1.45;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.06);
+  animation: fadeIn 0.25s ease;
+  align-self: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* INPUT AREA */
 .inputContainer {
+  background: #f0f0f0;
+  padding: 12px 16px;
+  margin: 14px;
+  border-radius: 16px;
   display: flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 16px;
-  border-radius: 8px;
-  background: #f0f0f0;
-  margin: 16px;
+  gap: 10px;
 }
 
 .inputField {
   flex: 1;
-  min-height: 36px;
-  max-height: 110px;
-  padding: 8px 0;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  background: transparent;
   resize: none;
+  outline: none;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  max-height: 120px;
   overflow-y: auto;
-
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -112,51 +128,52 @@
   display: none;
 }
 
+/* DISABLED LOOK */
 .inactive {
-  color: #999;
+  color: #aaa;
 }
 
 .inactive::placeholder {
-  color: #999;
+  color: #aaa;
 }
 
-/* BUTTON GROUP */
+/* BUTTONS */
 .btnGroup {
   display: flex;
-  gap: 8px;
+  gap: 10px;
 }
 
 .clearBtn,
 .sendBtn {
   width: 40px;
   height: 40px;
-  border: none;
   border-radius: 50%;
-  background: none;
+  border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 0;
+  background: none;
 }
 
 .clearBtn {
-  display: none; /* как в макете */
+  display: none;
 }
 
 .clearBtn img,
 .sendBtn img {
   width: 40px;
   height: 40px;
-  display: block;
 }
 
 .sendBtn {
   background: #e0e0e0;
+  transition: background 0.2s ease;
 }
 
 .active {
-  background: #8D4AFC !important;
+  background: #8d4afc !important;
 }
 
 .sendBtn:disabled {

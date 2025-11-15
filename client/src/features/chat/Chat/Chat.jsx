@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import ChatMessages from "../ChatMessages/ChatMessages";
 import ChatInput from "../ChatInput/ChatInput";
 import ChatMessageApi from "../../../entites/chatMessage/api/ChatMessageApi";
-import TeacherApi from "../../../entites/teacher/api/TeacherApi";
+import axiosInstance from "../../../shared/lib/axiosInstace";
 import styles from "./Chat.module.css";
 
 export default function Chat({ user }) {
@@ -43,57 +43,45 @@ export default function Chat({ user }) {
     setIsLoading(true);
 
     try {
-      // Сохраняем сообщение пользователя (даже если не авторизован, user_id будет null)
-      await ChatMessageApi.createMessage({
-        content,
-        sender: "user"
+      // Отправляем запрос к AI
+      const response = await axiosInstance.post("/chat-messages/ai", {
+        message: content
       });
 
-      // Имитация ответа ассистента
-      let assistantResponse = "Извините, я не понял ваш запрос.";
-
-      if (content.trim().length > 0) {
-        try {
-          const searchResponse = await TeacherApi.searchTeachers(content);
-          if (searchResponse.statusCode === 200 && searchResponse.data) {
-            const teachers = searchResponse.data;
-            if (teachers.length > 0) {
-              assistantResponse = `Найдено преподавателей: ${teachers.length}\n\n`;
-              teachers.forEach((teacher, index) => {
-                const fullName = `${teacher.last_name} ${teacher.first_name} ${teacher.middle_name || ""}`.trim();
-                assistantResponse += `${index + 1}. ${fullName}`;
-                if (teacher.faculty) assistantResponse += ` (${teacher.faculty})`;
-                if (teacher.department) assistantResponse += ` - ${teacher.department}`;
-                assistantResponse += `\n   ID: ${teacher.id}\n\n`;
-              });
-              assistantResponse += "Нажмите на преподавателя, чтобы перейти на его страницу.";
-            } else {
-              assistantResponse = "Преподаватели не найдены. Попробуйте изменить запрос.";
+      if (response.data.statusCode === 200 && response.data.data) {
+        const { userMessage: savedUserMessage, assistantMessage } = response.data.data;
+        
+        // Обновляем сообщение пользователя (если оно было сохранено)
+        if (savedUserMessage) {
+          setMessages((prev) => {
+            const updated = [...prev];
+            const lastUserMsg = updated[updated.length - 1];
+            if (lastUserMsg && lastUserMsg.sender === "user") {
+              updated[updated.length - 1] = {
+                ...lastUserMsg,
+                id: savedUserMessage.id,
+                createdAt: savedUserMessage.createdAt
+              };
             }
-          }
-        } catch (error) {
-          console.error("Ошибка поиска:", error);
-          assistantResponse = "Произошла ошибка при поиске. Попробуйте позже.";
+            return updated;
+          });
+        }
+
+        // Добавляем ответ ассистента
+        if (assistantMessage) {
+          const assistantMsg = {
+            id: assistantMessage.id,
+            content: assistantMessage.content,
+            sender: "assistant",
+            createdAt: assistantMessage.createdAt
+          };
+          setMessages((prev) => [...prev, assistantMsg]);
         }
       }
-
-      const assistantMessage = {
-        content: assistantResponse,
-        sender: "assistant",
-        createdAt: new Date().toISOString()
-      };
-
-      setMessages((prev) => [...prev, assistantMessage]);
-
-      // Сохраняем ответ ассистента
-      await ChatMessageApi.createMessage({
-        content: assistantResponse,
-        sender: "assistant"
-      });
     } catch (error) {
       console.error("Ошибка отправки сообщения:", error);
       const errorMessage = {
-        content: "Произошла ошибка при отправке сообщения.",
+        content: "Произошла ошибка при отправке сообщения. Попробуйте позже.",
         sender: "assistant",
         createdAt: new Date().toISOString()
       };

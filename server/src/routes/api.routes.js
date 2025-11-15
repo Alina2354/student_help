@@ -21,7 +21,7 @@ router.use("/grade-requirements", gradeRequirementsRoutes);
 router.use((req, res) => {
   res
     .status(404)
-    .json(formatResponse(404, "Маршрут не найден!!!", null, "Маршрут не найден"));
+    .json(formatResponse(404, "Маршрут не найден", null, "Маршрут не найден"));
 });
 
 module.exports = router;
