@@ -14,6 +14,7 @@ export default function TeacherPage({ user }) {
 
   const [openFaq, setOpenFaq] = useState(null);
   const [faqText, setFaqText] = useState("");
+  const [faqFile, setFaqFile] = useState(null);
 
   // фильтр
   const [selectedSemester, setSelectedSemester] = useState("all");
@@ -42,24 +43,32 @@ export default function TeacherPage({ user }) {
       : axiosInstance.defaults.baseURL + teacher.avatar
     : "/placeholder-avatar.png";
 
-  // создание FAQ
+  // создание FAQ с файлом
   const handleCreateFaq = async () => {
     if (!faqText.trim()) return;
 
     try {
-      const response = await FaqApi.createFaq({
-        teacher_id: Number(id),
-        text: faqText.trim(),
-        answer: null,
-        file_path: null,
-      });
+      const formData = new FormData();
+      formData.append("teacher_id", id);
+      formData.append("text", faqText.trim());
+
+      if (faqFile) {
+        formData.append("file", faqFile);
+      }
+
+      const response = await FaqApi.createFaq(formData);
 
       if (response.statusCode === 201) {
         setFaqText("");
+        setFaqFile(null);
+        // Сбрасываем input файла
+        const fileInput = document.querySelector('input[type="file"]');
+        if (fileInput) fileInput.value = "";
         loadTeacher();
       }
     } catch (err) {
       console.error("Ошибка FAQ:", err);
+      alert("Ошибка при создании отзыва");
     }
   };
 
@@ -71,6 +80,40 @@ export default function TeacherPage({ user }) {
     } catch (err) {
       console.error("Ошибка удаления", err);
     }
+  };
+
+  // скачивание файла
+  const handleDownloadFile = (faqId, filePath) => {
+    if (!filePath) return;
+
+    const fileUrl = filePath.startsWith("http")
+      ? filePath
+      : `${axiosInstance.defaults.baseURL}${filePath}`;
+
+    // Для изображений открываем в новой вкладке, для остальных - скачиваем
+    const isImage = /\.(jpg|jpeg|png|gif)$/i.test(filePath);
+    
+    if (isImage) {
+      window.open(fileUrl, "_blank");
+    } else {
+      // Используем download endpoint для документов
+      const downloadUrl = FaqApi.getFileDownloadUrl(faqId);
+      const link = document.createElement("a");
+      link.href = downloadUrl;
+      link.download = filePath.split("/").pop() || "file";
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  };
+
+  const getFileIcon = (filePath) => {
+    if (!filePath) return "📎";
+    const ext = filePath.split(".").pop().toLowerCase();
+    if (["jpg", "jpeg", "png", "gif"].includes(ext)) return "🖼️";
+    if (ext === "pdf") return "📄";
+    if (["doc", "docx"].includes(ext)) return "📝";
+    return "📎";
   };
 
   if (loading) return <div className={styles.loading}>Загрузка...</div>;
@@ -206,6 +249,34 @@ export default function TeacherPage({ user }) {
                 >
                   <p>{item.answer}</p>
 
+                  {/* Отображение файла, если есть */}
+                  {item.file_path && (
+                    <div className={styles.faqFileSection}>
+                      <button
+                        className={styles.downloadButton}
+                        onClick={() => handleDownloadFile(item.id, item.file_path)}
+                        title="Скачать файл"
+                      >
+                        {getFileIcon(item.file_path)} Скачать документ
+                      </button>
+                      {/* Превью для изображений */}
+                      {item.file_path.match(/\.(jpg|jpeg|png|gif)$/i) && (
+                        <div className={styles.filePreview}>
+                          <img
+                            src={
+                              item.file_path.startsWith("http")
+                                ? item.file_path
+                                : `${axiosInstance.defaults.baseURL}${item.file_path}`
+                            }
+                            alt="Превью"
+                            className={styles.previewImage}
+                            onClick={() => handleDownloadFile(item.id, item.file_path)}
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   {canDelete && (
                     <button
                       className={styles.deleteBtn}
@@ -214,6 +285,19 @@ export default function TeacherPage({ user }) {
                       ✕
                     </button>
                   )}
+                </div>
+              )}
+
+              {/* Отображение файла для вопросов без ответа */}
+              {!hasAnswer && item.file_path && (
+                <div className={styles.faqFileSectionNoAnswer}>
+                  <button
+                    className={styles.downloadButton}
+                    onClick={() => handleDownloadFile(item.id, item.file_path)}
+                    title="Скачать файл"
+                  >
+                    {getFileIcon(item.file_path)} Скачать документ
+                  </button>
                 </div>
               )}
             </div>
@@ -230,6 +314,34 @@ export default function TeacherPage({ user }) {
               value={faqText}
               onChange={(e) => setFaqText(e.target.value)}
             />
+
+            {/* Input для файла */}
+            <div className={styles.fileUploadSection}>
+              <label className={styles.fileLabel}>
+                <input
+                  type="file"
+                  accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.gif"
+                  className={styles.fileInput}
+                  onChange={(e) => setFaqFile(e.target.files[0])}
+                />
+                <span className={styles.fileLabelText}>
+                  {faqFile ? `Выбран: ${faqFile.name}` : "📎 Прикрепить документ"}
+                </span>
+              </label>
+              {faqFile && (
+                <button
+                  type="button"
+                  className={styles.removeFileButton}
+                  onClick={() => {
+                    setFaqFile(null);
+                    const fileInput = document.querySelector('input[type="file"]');
+                    if (fileInput) fileInput.value = "";
+                  }}
+                >
+                  ✕
+                </button>
+              )}
+            </div>
 
             <button className={styles.btnReview} onClick={handleCreateFaq}>
               Оставить отзыв

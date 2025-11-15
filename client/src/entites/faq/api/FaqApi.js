@@ -22,7 +22,12 @@ export default class FaqApi {
   }
 
   static async createFaq(formData) {
-    const response = await axiosInstance.post("/faqs", formData);
+    // FormData автоматически установит правильный Content-Type с boundary
+    const response = await axiosInstance.post("/faqs", formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    });
     return response.data;
   }
 

@@ -242,9 +242,10 @@ class FaqController {
 
       // faq.file_path имеет формат: /files/faq-files/имя_файла.ext
       // Нужно получить: public/faq-files/имя_файла.ext
-      const relativePath = faq.file_path;
+      const relativePath = faq.file_path.replace(/^\/files\//, "");
       const absolutePath = path.resolve(
         __dirname,
+        "..",
         "..",
         "public",
         relativePath
