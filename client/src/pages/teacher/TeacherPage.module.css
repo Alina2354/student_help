@@ -1,5 +1,10 @@
 @font-face {
   font-family: "Yandex Sans";
+  src: url("/fonts/YandexSansText-Regular.woff2") format("woff2");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Yandex Sans";
   src: url("/fonts/YandexSansText-Medium.woff2") format("woff2");
   font-weight: 500;
 }
@@ -8,11 +13,6 @@
   src: url("/fonts/YandexSansText-Bold.woff2") format("woff2");
   font-weight: 700;
 }
-@font-face {
-  font-family: "Yandex Sans";
-  src: url("/fonts/YandexSansText-Regular.woff2") format("woff2");
-  font-weight: 400;
-}
 
 body {
   background: #f5f7fa;
@@ -20,34 +20,39 @@ body {
 }
 
 .cont {
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 0 20px 40px;
 }
 
+/* BACK BUTTON */
 .back {
   border: none;
   background: transparent;
-  margin-top: 16px;
+  margin-top: 18px;
   cursor: pointer;
 }
 
-/* PAGE */
+/* PAGE WRAPPER */
 .teacherPage {
-  max-width: 800px;
-  margin: 20px auto;
+  max-width: 850px;
+  margin: 24px auto;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
+
 .teacherHeader {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   margin-bottom: 24px;
 }
 
 .teacherAvatar {
-  width: 64px;
-  height: 64px;
+  width: 72px;
+  height: 72px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -55,31 +60,58 @@ body {
 .teacherInfo h1 {
   font-size: 24px;
   font-weight: 700;
+  color: #111;
 }
 
 .teacherSubtitle {
-  font-size: 14px;
+  margin-top: 4px;
+  font-size: 15px;
   color: #666;
 }
 
-/* REQUIREMENTS */
+/* ===== SEMESTER FILTER ===== */
+
+.filterContainer {
+  margin: 10px 0 26px;
+}
+
+.filterSelect {
+  width: 120px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 14px;
+  padding: 10px 12px;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  transition: 0.2s;
+}
+
+.filterSelect:hover {
+  border-color: #c8c8c8;
+}
+
+/* ===== REQUIREMENTS ===== */
+
 .requireMainHeader {
   font-size: 22px;
   font-weight: 700;
-  margin: 20px 0 12px;
+  color: #111;
+  margin-bottom: 16px;
 }
 
 .requirementsSection {
-  background: #fff;
-  padding: 20px;
-  border-radius: 16px;
+  background: white;
+  padding: 22px;
+  border-radius: 20px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
 }
 
 .requireDiscipline {
   font-size: 18px;
   font-weight: 600;
+  color: #111;
   margin-bottom: 12px;
 }
 
@@ -87,6 +119,7 @@ body {
   margin-top: 14px;
   font-size: 16px;
   font-weight: 700;
+  color: #222;
 }
 
 .requireText {
@@ -96,32 +129,35 @@ body {
   line-height: 1.45;
 }
 
-/* FAQ */
+/* ===== FAQ BLOCK ===== */
+
 .faqHeader {
   font-size: 22px;
   font-weight: 700;
   margin: 26px 0 16px;
+  color: #111;
 }
 
 .faqItem {
-  background: #fff;
-  border-radius: 16px;
-  margin-bottom: 12px;
+  background: white;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  position: relative;
 }
 
 .faqQuestion {
   width: 100%;
-  padding: 18px 20px;
+  background: transparent;
   border: none;
-  background: none;
+  padding: 18px 20px;
   text-align: left;
   font-size: 16px;
   color: #333;
-  cursor: pointer;
   display: flex;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .faqAnswer {
@@ -133,96 +169,45 @@ body {
 }
 
 .faqAnswer.active {
-  max-height: 500px;
   padding: 16px 20px 20px;
+  max-height: 500px;
 }
 
 .deleteBtn {
   position: absolute;
-  right: 12px;
-  top: 12px;
-  border: none;
+  top: 14px;
+  right: 14px;
   background: transparent;
-  font-size: 18px;
+  border: none;
+  font-size: 20px;
+  color: #aaa;
   cursor: pointer;
-  color: #999;
+  transition: 0.2s;
 }
 
 .deleteBtn:hover {
-  color: #333;
+  color: #ba1e1e;
 }
 
-/* REVIEW FORM */
-.reviewForm {
-  margin-top: 26px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.textarea {
-  width: 100%;
-  border: 1px solid #ddd;
-  padding: 12px;
-  border-radius: 12px;
-  font-size: 15px;
-  resize: none;
-  min-height: 90px;
-  outline: none;
-}
-
-.btnReview {
-  width: 100%;
-  background: #8d4afc;
-  color: white;
-  border-radius: 14px;
-  padding: 14px 20px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-}
-
-.btnReview:hover {
-  background: #7d3cf2;
-}
-
-.filterContainer {
-  margin: 10px 0 20px;
-}
-
-.filterSelect {
-  width: 150px;
-  padding: 10px 12px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  background: white;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.faqQuestionContent {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+/* ===== FILE PREVIEW IN FAQ ===== */
 
 .fileIndicator {
   font-size: 14px;
+  color: #666;
 }
 
 .faqFileSection {
   margin-top: 16px;
-  padding: 12px;
-  background: #f5f5f5;
-  border-radius: 8px;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 14px;
 }
 
 .faqFileInfo {
   display: flex;
-  align-items: center;
   gap: 8px;
-  margin-bottom: 12px;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 .fileIcon {
@@ -235,40 +220,44 @@ body {
 }
 
 .filePreview {
-  margin: 12px 0;
+  margin-top: 8px;
 }
 
 .filePreviewImage {
   max-width: 100%;
-  max-height: 300px;
-  border-radius: 4px;
+  max-height: 260px;
+  border-radius: 8px;
   object-fit: contain;
+  background: #fff;
+  border: 1px solid #eee;
 }
 
 .downloadButton {
-  padding: 8px 16px;
-  background: #007bff;
-  color: white;
+  margin-top: 12px;
+  padding: 10px 14px;
+  background: #8d4afc;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  border-radius: 12px;
+  color: white;
   font-size: 14px;
-  transition: background 0.2s;
+  cursor: pointer;
+  font-weight: 500;
 }
 
 .downloadButton:hover {
-  background: #0056b3;
+  background: #7d3cf2;
 }
 
+/* ===== FILE UPLOAD INPUT ===== */
+
 .fileUploadSection {
-  margin: 12px 0;
+  margin: 14px 0;
   display: flex;
-  align-items: center;
   gap: 8px;
+  align-items: center;
 }
 
 .fileLabel {
-  flex: 1;
   cursor: pointer;
 }
 
@@ -278,32 +267,78 @@ body {
 
 .fileLabelText {
   display: inline-block;
-  padding: 8px 12px;
-  background: #f0f0f0;
+  width: 100%;
+  padding: 10px;
+  background: #fafafa;
   border: 1px dashed #ccc;
-  border-radius: 4px;
+  border-radius: 12px;
   font-size: 14px;
   color: #666;
-  transition: all 0.2s;
+  transition: 0.2s;
 }
 
 .fileLabelText:hover {
-  background: #e0e0e0;
-  border-color: #999;
+  background: #f0f0f0;
+  border-color: #aaa;
 }
 
 .removeFileButton {
-  padding: 4px 8px;
+  padding: 8px 10px;
   background: #dc3545;
-  color: white;
+  border-radius: 10px;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
+  color: white;
   font-size: 12px;
+  cursor: pointer;
 }
 
 .removeFileButton:hover {
   background: #c82333;
 }
 
+/* ===== REVIEW FORM ===== */
 
+.reviewForm {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.textarea {
+  border: 1px solid #ddd;
+  padding: 14px;
+  border-radius: 14px;
+  font-size: 15px;
+  background: #fff;
+  resize: none;
+  min-height: 100px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.textarea:focus {
+  border-color: #c8c8c8;
+}
+
+.btnReview {
+  width: 100%;
+  padding: 14px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #8d4afc;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.2s;
+}
+
+.btnReview:hover {
+  background: #7d3cf2;
+}
+
+.deleteBtnInline{
+  border: none;
+  background: none
+}

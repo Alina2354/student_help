@@ -72,7 +72,7 @@ export default function TeacherPage({ user }) {
       const formData = new FormData();
       formData.append("teacher_id", id);
       formData.append("text", faqText.trim());
-      
+
       if (faqFile) {
         formData.append("file", faqFile);
       }
@@ -107,7 +107,7 @@ export default function TeacherPage({ user }) {
   const handleDownloadFile = async (faqId) => {
     try {
       const downloadUrl = FaqApi.getFileDownloadUrl(faqId);
-      
+
       // Создаем временную ссылку для скачивания
       const link = document.createElement("a");
       link.href = downloadUrl;
@@ -123,16 +123,21 @@ export default function TeacherPage({ user }) {
   };
 
   if (loading) return <div className={styles.loading}>Загрузка...</div>;
-  if (!teacher) return <div className={styles.error}>Преподаватель не найден</div>;
+  if (!teacher)
+    return <div className={styles.error}>Преподаватель не найден</div>;
 
   // семестры
-  const semesters = [...new Set(teacher.disciplines.map((d) => d.semester))].sort();
+  const semesters = [
+    ...new Set(teacher.disciplines.map((d) => d.semester)),
+  ].sort();
 
   // дисциплины после фильтра
   const filteredDisciplines =
     selectedSemester === "all"
       ? teacher.disciplines
-      : teacher.disciplines.filter((d) => d.semester === Number(selectedSemester));
+      : teacher.disciplines.filter(
+          (d) => d.semester === Number(selectedSemester)
+        );
 
   return (
     <div className={styles.cont}>
@@ -229,9 +234,7 @@ export default function TeacherPage({ user }) {
               >
                 <div className={styles.faqQuestionContent}>
                   <span>{item.text}</span>
-                  {hasFile && (
-                    <span className={styles.fileIndicator}>📎</span>
-                  )}
+                  {hasFile && <span className={styles.fileIndicator}>📎</span>}
                 </div>
 
                 <div className={styles.faqRight}>
@@ -274,16 +277,10 @@ export default function TeacherPage({ user }) {
                           {getFileName(item.file_path)}
                         </span>
                       </div>
-                      
+
                       {/* Превью изображения */}
                       {isImageFile(item.file_path) && (
-                        <div className={styles.filePreview}>
-                          <img
-                            src={getFileUrl(item.file_path)}
-                            alt="Превью"
-                            className={styles.filePreviewImage}
-                          />
-                        </div>
+                        <div className={styles.filePreview}></div>
                       )}
 
                       {/* Кнопка скачивания - доступна ВСЕМ пользователям */}
@@ -291,7 +288,7 @@ export default function TeacherPage({ user }) {
                         className={styles.downloadButton}
                         onClick={() => handleDownloadFile(item.id)}
                       >
-                        📥 Скачать файл
+                        Скачать файл
                       </button>
                     </div>
                   )}
@@ -332,7 +329,9 @@ export default function TeacherPage({ user }) {
                   onChange={(e) => setFaqFile(e.target.files[0] || null)}
                 />
                 <span className={styles.fileLabelText}>
-                  {faqFile ? faqFile.name : "📎 Прикрепить файл (PDF, DOC, изображения)"}
+                  {faqFile
+                    ? faqFile.name
+                    : "📎 Прикрепить файл (PDF, DOC, изображения)"}
                 </span>
               </label>
               {faqFile && (
