@@ -27,7 +27,6 @@ router.get("/:id", verifyAccessToken, disciplineController.getDisciplineById);
 router.post(
   "/",
   verifyAccessToken,
-  verifyAdmin,
   disciplineController.createDiscipline
 );
 router.put(

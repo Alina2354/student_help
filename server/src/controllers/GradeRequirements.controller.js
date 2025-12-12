@@ -64,7 +64,7 @@ class GradeRequirementsController {
         return res
           .status(400)
           .json(
-            formatResponse(400, "Все обязательные поля должны быть заполнены")
+            formatResponse(400, "Все обязательные поля должны быть заполнены", error)
           );
       }
 
